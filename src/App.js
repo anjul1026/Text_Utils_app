@@ -1,10 +1,11 @@
 import './App.css';
-import Navbar from './components/Navbar.Js';
+import Nav from './components/Nav';
 
 function App() {
   return (
   <>
-   <Navbar title="textutlis2" aboutText="about us"/>    
+  <Nav title="TextUtlis" aboutText="hello"/>
+  
   </>       
   );
 }
