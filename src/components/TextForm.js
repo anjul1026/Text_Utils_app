@@ -18,7 +18,10 @@ export default function TextForm(props) {
   const [text, setText] = useState("enter text here");
   return (
     <>
-      <div className="container">
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "#3f3a3a" }}
+      >
         <h1>{props.heading}</h1>
         <div className="form-group">
           <textarea
@@ -27,6 +30,10 @@ export default function TextForm(props) {
             id="myBox"
             rows="8"
             onChange={handleOnChange}
+            style={{
+              backgroundColor: props.mode === "dark" ? "grey" : "light",
+              color: props.mode === "dark" ? "red" : "light",
+            }}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-5" onClick={handleUpClick}>
@@ -35,14 +42,21 @@ export default function TextForm(props) {
         <button className="btn btn-primary" onClick={handleLoClick}>
           Convert to lower case
         </button>
-        <div className="container my-3">
+        <div
+          className="container my-3"
+          style={{ color: props.mode === "dark" ? "white" : "#3f3a3a" }}
+        >
           <h1>your text summary</h1>
           <p>
             {text.split(" ").length} words and {text.length} characters
           </p>
           <p>{0.008 * text.split(" ").length} minutes read</p>
           <h2>preview</h2>
-          <p>{text}</p>
+          <p>
+            {text.length > 1
+              ? text
+              : "enter something into text box above to preview it here"}
+          </p>
         </div>
       </div>
     </>
