@@ -38,7 +38,7 @@ export default function TextForm(props) {
     setText(newText.join(" "));
     props.showAlert("Extra Spaces Removed", "success");
   };
-  const [text, setText] = useState(" ");
+  const [text, setText] = useState("");
   return (
     <>
       <div
@@ -54,24 +54,44 @@ export default function TextForm(props) {
             rows="8"
             onChange={handleOnChange}
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "light",
-              color: props.mode === "dark" ? "red" : "light",
+              backgroundColor: props.mode === "dark" ? "#dee2e6" : "light",
+              color: props.mode === "dark" ? "#000" : "light",
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleUpClick}
+        >
           Convert to upper case
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleLoClick}
+        >
           Convert to lower case
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleclearClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleclearClick}
+        >
           Clear Text
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleCopy}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleCopy}
+        >
           Copy Text
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleExtraSpaces}
+        >
           Remove Extra Spaces
         </button>
         <div
@@ -80,9 +100,20 @@ export default function TextForm(props) {
         >
           <h1>your text summary</h1>
           <p>
-            {text.split(" ").length} words and {text.length} characters
+            {
+              text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length
+            }{" "}
+            words and {text.length} characters
           </p>
-          <p>{0.008 * text.split(" ").length} minutes read</p>
+          <p>
+            {0.008 *
+              text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length}{" "}
+            minutes read
+          </p>
           <h2>preview</h2>
           <p>
             {text.length > 1
