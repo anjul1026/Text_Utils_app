@@ -25,7 +25,7 @@ export default function Nav(props) {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <Link className="nav-link" to="/">
-              Home <span className="sr-only">(current)</span>
+              Home <span className="sr-only"></span>
             </Link>
           </li>
           <li className="nav-item">
